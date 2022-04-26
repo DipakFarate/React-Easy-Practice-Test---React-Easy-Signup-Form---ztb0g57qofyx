@@ -4,16 +4,12 @@ import '../styles/App.css';
 const App = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [gender, setGender] = useState("male");
-  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
 
   const [message, setMessage] = useState("Please fill all the details");
 
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [genderError, setGenderError] = useState("");
-  const [phoneError, setPhoneError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
   const handleNameChange = (event) => {
@@ -24,13 +20,6 @@ const App = () => {
     setEmail(event.target.value);
   }
 
-  const handleGenderChange = (event) => {
-    setGender(event.target.value);
-  }
-
-  const handlePhoneChange = (event) => {
-    setPhoneNumber(event.target.value);
-  }
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -44,13 +33,11 @@ const App = () => {
     setMessage("Please fill all the details");
     setNameError("");
     setEmailError("");
-    setGenderError("");
-    setPhoneError("");
     setPasswordError("");
 
     let flag = true;
 
-    if(name == "" || email == "" || password == "" || phoneNumber == "") {
+    if(name == "" || email == "" || password == "") {
       setMessage("All fields are mandatory");
       flag = false;
     }
@@ -70,12 +57,7 @@ const App = () => {
       flag = false;
     }
 
-    let isNum = /^\d+$/.test(phoneNumber);
-
-    if(phoneNumber != "" && (!isNum)) {
-      setPhoneError("Phone Number must contain only numbers");
-      flag = false;
-    }
+  
 
     
     if (flag) {
@@ -104,21 +86,6 @@ const App = () => {
           <h3>{emailError}</h3>
         </div>
 
-        <div className="grid-item">
-          <label>Gender</label>
-          <select data-testid='gender' value={gender} onChange={handleGenderChange}>
-            <option value="male">male</option>
-            <option value="female">female</option>
-            <option value="others">others</option>
-          </select>
-          <h3>{genderError}</h3>
-        </div>
-
-        <div className="grid-item">
-          <label>Phone Number</label>
-          <input type="tel" data-testid = 'phoneNumber' value={phoneNumber} onChange={handlePhoneChange}/>
-          <h3>{phoneError}</h3>
-        </div>
 
         <div className="grid-item">
           <label>Password</label>
